@@ -9,6 +9,8 @@ function yes_or_no {
     done
 }
 
+sudo pacman -Sy artix-archlinux-support
+
 yes_or_no "Have you added the following to /etc/pacman.conf after [galaxy]:
 
 [extra]
@@ -20,10 +22,12 @@ Include = /etc/pacman.d/mirrorlist-arch
 (y/n)
 "
 
+sudo pacman-key --populate archlinux
+
 yes_or_no "Install Sway? (y/n)" && sudo pacman -Sy sway
 
-sudo pacman -Sy git wget rofi mousepad mako brightnessctl network-manager-applet \
-    blueman wdisplays pcmanfm file-roller 7zip arj binutils bzip3 \
+sudo pacman -Sy git nano vim wget rofi mousepad mako brightnessctl \
+    network-manager-applet blueman wdisplays pcmanfm file-roller 7zip arj binutils bzip3 \
     cdrtools cpio lhasa lrzip rpmextract squashfs-tools unace unrar unzip zip \
     grim swappy obs-studio xdg-desktop-portal-wlr xdg-desktop-portal \
     swaybg tealdeer feh swayidle swaylock mpv mpd ttf-jetbrains-mono-nerd \
@@ -41,3 +45,6 @@ fi
 fc-cache -fv
 xdg-user-dirs-update
 tldr --update
+
+# the artixinstall does add thunar, which is unnecessary for me
+sudo pacman -Rc thunar
