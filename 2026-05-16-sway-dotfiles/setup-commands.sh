@@ -9,6 +9,17 @@ function yes_or_no {
     done
 }
 
+yes_or_no "Have you added the following to /etc/pacman.conf after [galaxy]:
+
+[extra]
+Include = /etc/pacman.d/mirrorlist-arch
+
+[community]
+Include = /etc/pacman.d/mirrorlist-arch
+
+(y/n)
+"
+
 yes_or_no "Install Sway? (y/n)" && sudo pacman -Sy sway
 
 sudo pacman -Sy git wget rofi mousepad mako brightnessctl network-manager-applet \
@@ -16,10 +27,10 @@ sudo pacman -Sy git wget rofi mousepad mako brightnessctl network-manager-applet
     cdrtools cpio lhasa lrzip rpmextract squashfs-tools unace unrar unzip zip \
     grim swappy obs-studio xdg-desktop-portal-wlr xdg-desktop-portal \
     swaybg tealdeer feh swayidle swaylock mpv mpd ttf-jetbrains-mono-nerd \
-    ttf-nerd-fonts-symbols otf-font-awesome
+    ttf-nerd-fonts-symbols otf-font-awesome foot waybar firefox
     --needed
 
-paru -Sy sfwbar --needed
+#paru -Sy sfwbar --needed
 
 # INTEL-SPECIFIC!
 if inxi -G | grep -i 'intel' -q ; 
